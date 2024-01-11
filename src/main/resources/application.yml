@@ -1,0 +1,70 @@
+spring:
+  # MySQL 설정
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sesac?characterEncoding=UTF-8&useLegacyDatetimeCode=false
+    username: root
+    password: heart4245@@
+
+    hikari:
+      auto-commit: true
+      minimum-idle: 15
+      maximum-pool-size: 30
+      transaction-isolation: TRANSACTION_READ_COMMITTED
+      pool-name: sesac
+
+  # JPA 설정
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: Asia/Seoul
+        format_sql: false
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        default_batch_fetch_size: 10
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  # Servlet 설정
+#  servlet:
+#    session:
+#      tracking-modes: cookie
+#      timeout: 1800
+#
+#    multipart:
+#      max-file-size: 10MB
+#      max-request-size: 50MB
+
+  # Thymeleaf 설정 (뷰 리졸버)
+  thymeleaf:
+    prefix: classpath:/templates/views/
+    suffix: .html
+
+# 로그 설정
+logging:
+  level:
+    root: INFO
+
+# 서버 설정
+server:
+  #  port: 80
+  error:
+    # 스프링 부트가 기본적으로 제공하는 Error 페이지 끄기
+    whitelabel:
+      enabled: false
+
+    # 오류 페이지 기본 경로
+    path: /error
+
+    # Error 메시지 포함 여부 (개발용)
+    #    include-exception: true                        # 사용 가능한 값 : true, false
+    #    include-message: on_param                      # 사용 가능한 값 : always, never, on_param
+    #    include-stacktrace: on_param                   # 사용 가능한 값 : always, never, on_param
+    #    include-binding-errors: on_param               # 사용 가능한 값 : always, never, on_param
+
+    # Error 메시지 포함 여부 (서버용)
+    include-exception: false
+    include-message: never
+    include-stacktrace: never
+    include-binding-errors: never
