@@ -5,21 +5,33 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 
 public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
-        Integer[] arr = new Integer[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = Integer.parseInt(br.readLine());  //수 입력받기
+        int N = Integer.parseInt(br.readLine());
+        int[] A = new int[N];
+        //내림차순 정렬을 하려면 int가 아닌 Integer로 선언
+        Integer[] B = new Integer[N];
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringTokenizer st2 = new StringTokenizer(br.readLine());
+
+        for(int i = 0; i < N; i++) {
+            A[i] = Integer.parseInt(st.nextToken());
+            B[i] = Integer.parseInt(st2.nextToken());
         }
-        Arrays.sort(arr, Collections.reverseOrder());  //내림차순으로 정렬하기
-        int total = 0;
-        for (int i = 0; i < n; i++) {
-            total = Math.max(total, arr[i] * (i+1));
+        //A 올림, B 내림
+        Arrays.sort(A);
+        Arrays.sort(B, Collections.reverseOrder());
+
+        int sum = 0;
+
+        for(int i = 0; i < N; i++) {
+            sum += (A[i] * B[i]);
         }
-        System.out.print(total);
+        System.out.println(sum);
     }
 }
