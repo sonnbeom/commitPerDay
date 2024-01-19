@@ -1,44 +1,33 @@
 package com.example.demo.codingtest;
 
-
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
-        /*
-        * */
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[][] time = new int[n][2];
-
-        for (int i = 0; i < n; i++) {
-            time[i][0] = sc.nextInt();
-            time[i][1] = sc.nextInt();
-        }
-        Arrays.sort(time, new Comparator<int[]>() {
-            // compare 메소드가 양수를 반환화면 두 요소의 위치를 바꾼다
-            //아래 방식은 오름차순 정렬이다 1 2 3.... 이런 식
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                if (o1[1]==o2[1]){
-                    return o1[0] - o2[0];
-                }
-                return o1[1] - o2[1];
-            }
-        });
-
+        Long num = sc.nextLong();
+        /*
+        * 1. 4,294,967,295가 최댓값이므로 Long 타입을 써줍니다.
+        * 2. 공차를 1로 작은 숫자부터 더합니다
+        * 3. 주어진 숫자보다 합이 클 경우 멈춥니다.
+        * 4. 한번 더 더해지지 않을 경우 최대 갯수 N개로 자연수의 합S를 구현한 것이므로
+        * 5. count에서 -1를 진행하고 출력합니다.
+        * */
+        Long comNum = 0L;
         int count = 0;
-        int endTime = 0;
-
-        for (int i = 0; i < n; i++) {
-            if (endTime <= time[i][0]){
-                count++;
-                endTime = time[i][1];
+        for (int i = 1; ; i++) {
+            if (comNum>num){
+                break;
             }
+            comNum += i;
+            count++;
         }
-        System.out.println(count);
-
+        System.out.println(count-1);
+        sc.close();
     }
 }
+/*
+* 1234
+* 9
+* 1 2 3 4
+* */
