@@ -1,26 +1,20 @@
 package com.example.demo.codingtest;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String s = br.readLine();
 
-        for (int i = 0; i <n ; i++) {
-            int rest = sc.nextInt();
+        StringTokenizer str1 = new StringTokenizer(s,"1");
+        StringTokenizer str0 = new StringTokenizer(s,"0");
 
-            int qua = rest/25;
-            rest %= 25;
+        int min =  Math.min(str1.countTokens(), str0.countTokens());
 
-            int dim = rest/10;
-            rest %= 10;
-
-            int nick = rest/5;
-            rest %= 5;
-
-            int penn = rest/1;
-            System.out.println(qua+" "+dim+" "+nick+" "+penn);
-        }
+        System.out.println(min);
     }
 }
