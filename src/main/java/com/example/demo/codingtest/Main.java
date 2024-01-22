@@ -1,35 +1,30 @@
 package com.example.demo.codingtest;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        int a = 0;
+        int b = 0;
+        int c = 0;
+        int rest = 0;
 
-    public static void main(String[] args) {
-
-        Scanner in = new Scanner(System.in);
-
-        int N = in.nextInt();
-
-        int[] arr = new int[N];
-
-        for(int i = 0; i < N; i++) {
-            arr[i] = in.nextInt();
+        if (t%10 != 0){
+            System.out.println(-1);
+        }else {
+            //t가 300이 넘지 않는다면 0이 할당됩니다.
+            a = t/300;
+            //t가 300이 넘지 않는다면 t값이 그대로 t에 할당됩니다.
+            t %= 300;
+            //t가 60이 넘지 않는다면 0이 할당됩니다.
+            b = t/60;
+            //t가 60이 넘지 않는다면 t값이 그대로 t에 할당됩니다.
+            t %= 60;
+            //if문에서 10으로 나누어 떨어지는 정수임을 확인했기에 t에서 10만 나눠줍니다.
+            c = t/10;
+            System.out.println(a+" "+b+" "+c);
         }
-
-        // 정렬
-        Arrays.sort(arr);
-
-        int prev = 0;	// 이전까지의 대기시간 누적합
-        int sum = 0;	// 사람별 대기시간 총합
-
-        for(int i = 0; i < N; i++) {
-            // 이전까지의 대기시간과 현재 사람이 걸리는 시간을 더해준다.
-            sum += prev + arr[i];
-
-            // 이전까지의 누적합에 현재 걸리는 시간을 더해준다.
-            prev += arr[i];
-        }
-        System.out.println(sum);
     }
 }
