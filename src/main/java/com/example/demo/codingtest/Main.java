@@ -3,18 +3,26 @@ package com.example.demo.codingtest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String s = br.readLine();
+        Scanner sc = new Scanner(System.in);
 
-        StringTokenizer str1 = new StringTokenizer(s,"1");
-        StringTokenizer str0 = new StringTokenizer(s,"0");
+        int N = sc.nextInt();
+        int snake = sc.nextInt();
 
-        int min =  Math.min(str1.countTokens(), str0.countTokens());
+        int[] arr = new int[N];
+        for (int i = 0; i < arr.length; i++)
+            arr[i] = sc.nextInt();
 
-        System.out.println(min);
+        Arrays.sort(arr);
+        for (int i = 0; i < arr.length; i++) {
+            if (snake >= arr[i])
+                ++snake;
+        }
+        System.out.println(snake);
     }
 }
