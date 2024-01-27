@@ -18,6 +18,7 @@ public class Main {
 
         int count = 0;
         int num = 0;
+
         for (int i = 0; i < n; i++) {
             if (arr[i]>num){
                 num = arr[i]+l-1;
