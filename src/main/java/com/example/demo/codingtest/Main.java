@@ -1,25 +1,28 @@
 package com.example.demo.codingtest;
 
+
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        Integer[] arr = new Integer[n];
-        int min = 0;
-        for (int i = 0; i < n; i++) {
+        int l = sc.nextInt();
+        int[] arr = new int[n];
+
+        for (int i = 0; i <n ; i++) {
             arr[i] = sc.nextInt();
         }
-        Arrays.sort(arr, Comparator.reverseOrder());
+        Arrays.sort(arr);
+
+        int count = 0;
+        int num = 0;
         for (int i = 0; i < n; i++) {
-            int max = arr[i]+i+1;
-            if (max>min){
-                min = max;
+            if (arr[i]>num){
+                num = arr[i]+l-1;
+                count++;
             }
-        }
-        System.out.println(min+1);
+        }System.out.println(count);
     }
 }
