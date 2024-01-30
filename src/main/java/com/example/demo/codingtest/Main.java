@@ -1,31 +1,44 @@
 package com.example.demo.codingtest;
 
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
+
 public class Main {
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+    public static int N, M;
+    public static StringBuilder sb = new StringBuilder();
+    public static int[] arr;
+    public static void main(String[] args) throws IOException {
 
-        Set<Integer> set = new HashSet<>();
-        for (int i = 0; i < n; i++) {
-            set.add(sc.nextInt());
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+
+        arr = new int[M];
+
+        dfs(0, 1);
+        System.out.println(sb);
+    }
+
+    public static void dfs(int depth, int a) {
+
+        if (depth == M) {
+            for(int t : arr) {
+                //if(t==0) break;
+                sb.append(t).append(" ");
+            }
+            sb.append("\n");
+            return;
         }
 
-        int m = sc.nextInt();
-        int[] card = new int[m];
-        for (int i = 0; i < m; i++) {
-            card[i] = sc.nextInt();
-        }
-        for (int i = 0; i < m; i++) {
-            if (set.contains(card[i])){
-                card[i] = 1;
-            }else
-                card[i] = 0;
-        }
-        for (int i = 0; i < m; i++) {
-            System.out.print(card[i]+" ");
+        for (int i = a; i <= N ; i++) {
+            arr[depth] = i;
+            dfs(depth+1,i+1);
         }
     }
 }
