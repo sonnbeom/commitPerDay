@@ -8,37 +8,40 @@ import java.util.*;
 
 
 public class Main {
-    public static int N, M;
-    public static StringBuilder sb = new StringBuilder();
-    public static int[] arr;
-    public static void main(String[] args) throws IOException {
+    static int[] arr;
+    static boolean[] visit;
+    static StringBuilder st;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        arr = new int[m];
+        visit = new boolean[m];
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        dfs(n, m, 0);
 
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
 
-        arr = new int[M];
-
-        dfs(0, 1);
-        System.out.println(sb);
     }
+    private static void dfs(int n, int m, int depth){
 
-    public static void dfs(int depth, int a) {
-
-        if (depth == M) {
-            for(int t : arr) {
-                //if(t==0) break;
-                sb.append(t).append(" ");
+        if (depth==m){
+            for(int num: arr){
+                st.append(num).append(" ");
             }
-            sb.append("\n");
+            st.append("\n");
             return;
         }
 
-        for (int i = a; i <= N ; i++) {
-            arr[depth] = i;
-            dfs(depth+1,i+1);
+        for(int i=0; i<n; i++){
+            if (!visit[i]) {
+                visit[i] = true;
+                arr[depth] = i+1;
+                dfs(n,m,depth+1);
+                visit[i] = false;
+
+            }
         }
     }
+
 }
+
