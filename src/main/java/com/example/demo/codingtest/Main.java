@@ -1,6 +1,7 @@
 package com.example.demo.codingtest;
 
 
+
 import java.util.Scanner;
 
 public class Main {
@@ -37,5 +38,6 @@ public class Main {
             arr[depth] = i;
             dfs(i+1, depth+1);
         }
+
     }
 }
