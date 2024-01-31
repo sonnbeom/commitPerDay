@@ -7,22 +7,24 @@ public class Main {
     static int N;
     static int M;
 
-    static int[]arr;
-
     static StringBuilder st = new StringBuilder();
 
-    public static void main(String[]args){
-        Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        M = sc.nextInt();
+    static int[] arr;
 
-        arr = new int[M];
-        dfs(1,0);
-        System.out.println(st);
+    public static void main(String[]args){
+       Scanner sc = new Scanner(System.in);
+       N = sc.nextInt();
+       M = sc.nextInt();
+
+       arr = new int[M];
+
+       dfs(1,0);
+       System.out.println(st);
+
     }
     static void dfs(int at, int depth){
 
-        if(depth==M){
+        if (depth==M){
             for(int num: arr){
                 st.append(num).append(" ");
             }
@@ -30,11 +32,10 @@ public class Main {
             return;
         }
 
-        for(int i = at; i<= N; i++){
 
+        for (int i = at; i < N; i++) {
             arr[depth] = i;
             dfs(i+1, depth+1);
-
         }
     }
 }
