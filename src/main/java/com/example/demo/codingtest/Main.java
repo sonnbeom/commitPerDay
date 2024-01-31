@@ -1,28 +1,43 @@
 package com.example.demo.codingtest;
 
 
-import java.util.Arrays;
+
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int l = sc.nextInt();
-        int[] arr = new int[n];
+    static int N;
+    static int M;
 
-        for (int i = 0; i <n ; i++) {
-            arr[i] = sc.nextInt();
-        }
-        Arrays.sort(arr);
+    static StringBuilder st = new StringBuilder();
 
-        int count = 0;
-        int num = 0;
-        for (int i = 0; i < n; i++) {
-            if (arr[i]>num){
-                num = arr[i]+l-1;
-                count++;
+    static int[] arr;
+
+    public static void main(String[]args){
+       Scanner sc = new Scanner(System.in);
+       N = sc.nextInt();
+       M = sc.nextInt();
+
+       arr = new int[M];
+
+       dfs(1,0);
+       System.out.println(st);
+
+    }
+    static void dfs(int at, int depth){
+
+        if (depth==M){
+            for(int num: arr){
+                st.append(num).append(" ");
             }
-        }System.out.println(count);
+            st.append("\n");
+            return;
+        }
+
+
+        for (int i = at; i < N; i++) {
+            arr[depth] = i;
+            dfs(i+1, depth+1);
+        }
+
     }
 }
