@@ -1,28 +1,43 @@
 package com.example.demo.codingtest;
 
-import java.util.*;
-
+import java.util.Scanner;
 
 public class Main {
+
+    public static int[] arr;
+    public static boolean[] visit;
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        HashMap<Integer,Integer> map = new HashMap<>();
-        for (int i = 0; i < n; i++) {
-            int input = sc.nextInt();
-            map.put(input, input);
+
+        Scanner in = new Scanner(System.in);
+
+        int N = in.nextInt();
+        int M = in.nextInt();
+
+        arr = new int[M];
+        visit = new boolean[N];
+        dfs(N, M, 0);
+
+    }
+
+    public static void dfs(int N, int M, int depth) {
+        if (depth == M) {
+            for (int val : arr) {
+                System.out.print(val + " ");
+            }
+            System.out.println();
+            return;
         }
-        int m = sc.nextInt();
-        for (int i = 0; i < m; i++) {
-            int input = sc.nextInt();
-            boolean contain =  map.containsKey(input);
-            if (contain){
-                System.out.println(1);
-            }else {
-                System.out.println(0);
+
+        for (int i = 0; i < N; i++) {
+            if (!visit[i]) {
+                visit[i] = true;
+                arr[depth] = i + 1;
+                dfs(N, M, depth + 1);
+                visit[i] = false;
             }
         }
     }
-}
 
+}
 
