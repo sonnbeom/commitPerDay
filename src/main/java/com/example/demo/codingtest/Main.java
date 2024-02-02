@@ -1,43 +1,22 @@
 package com.example.demo.codingtest;
 
-
-
-import java.util.Scanner;
-
+import java.util.*;
 public class Main {
-    static int N;
-    static int M;
+    public static void main(String[] args)   {
+        Scanner sc = new Scanner(System.in);
+        int[] arr = new int[11];
+        int t = sc.nextInt();
+        arr[1] =1;
+        arr[2]=2;
+        arr[3]=4;
 
-    static StringBuilder st = new StringBuilder();
-
-    static int[] arr;
-
-    public static void main(String[]args){
-       Scanner sc = new Scanner(System.in);
-       N = sc.nextInt();
-       M = sc.nextInt();
-
-       arr = new int[M];
-
-       dfs(1,0);
-       System.out.println(st);
-
-    }
-    static void dfs(int at, int depth){
-
-        if (depth==M){
-            for(int num: arr){
-                st.append(num).append(" ");
-            }
-            st.append("\n");
-            return;
+        for(int i=4;i<=10;i++) {
+            arr[i] = arr[i-3] + arr[i-2] + arr[i-1];
         }
 
-
-        for (int i = at; i < N; i++) {
-            arr[depth] = i;
-            dfs(i+1, depth+1);
+        for(int i=0;i<t;i++) {
+            int n = sc.nextInt();
+            System.out.println(arr[n]);
         }
-
     }
 }
