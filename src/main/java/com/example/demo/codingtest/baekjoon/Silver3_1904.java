@@ -14,6 +14,7 @@ public class Silver3_1904 {
         for (int i = 3; i <= n; i++) {
             arr[i] = (arr[i-1] + arr[i-2])%15746;
         }
+
         System.out.println(arr[n]);
     }
 }
