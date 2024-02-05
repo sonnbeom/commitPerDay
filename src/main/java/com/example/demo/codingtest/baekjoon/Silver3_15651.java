@@ -1,7 +1,7 @@
 package com.example.demo.codingtest.baekjoon;
 
 import java.util.*;
-public class Main {
+public class Silver3_15651 {
     static int N;
     static int M;
     static int arr[];
@@ -19,7 +19,7 @@ public class Main {
     static void dfs(int depth){
         if (depth==M){
             for (int i = 0; i < M; i++) {
-                sb.append(arr[i] +" ");
+                sb.append(arr[i]+ " ");
             }
             sb.append("\n");
             return;
