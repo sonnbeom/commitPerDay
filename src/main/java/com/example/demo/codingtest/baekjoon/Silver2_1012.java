@@ -2,37 +2,54 @@ package com.example.demo.codingtest.baekjoon;
 
 import java.util.*;
 public class Silver2_1012 {
+    static int M;
+    static int N;
+    static int[][] map;
+    static boolean[][]visit;
+    static StringBuilder sb = new StringBuilder();
+    static int count;
+    static int[] dirX = {0,0,-1,1};
+    static int[] dirY = {-1,1,0,0};
+    static int nowX, nowY;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
-        for (int a = 0; a < t; a++) {
-            int m = sc.nextInt();
-            int n = sc.nextInt();
-            int k = sc.nextInt();
-            int count = 0;
-            int[][] arr = new int[n][m];
+        int t= sc.nextInt();
+        for (int i = 0; i < t; i++) {
+            M = sc.nextInt();
+            N = sc.nextInt();
+            int k =sc.nextInt();
+            map = new int[N][M];
+            visit = new boolean[N][M];
             for (int j = 0; j < k; j++) {
-                int garo = sc.nextInt();
-                int sero = sc.nextInt();
-                arr[garo][sero] = 1;
+                int fi = sc.nextInt();
+                int se = sc.nextInt();
+                map[se][fi] = 1;
             }
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < m; j++) {
-                    if (j==0){
-                     // 우측만 체크
-                    }else if (j==m-1) {
-                        //좌측만 체크
-                    } else if (i==n-1||j==0) {
-                        //맨 하단+ 맨 좌측 우측 한번만 체크
-                    } else if (i==n-1) {
-                        //한칸 우측, 본인 한칸 더 우측을 0으로
-                    }else{
-                        //대각 좌, 대각 우를 체크하자
+            count = 0;
+            for (int j = 0; j < N; j++) {
+                for (int l = 0; l < M; l++) {
+                    if (map[j][l]==1 && !visit[j][l]){
+                        count++;
+                        DFS(l,j);
                     }
                 }
             }
-            System.out.println(count);
+            sb.append(count).append("\n");
+        }
+        System.out.println(sb);
+
+    }
+    static void DFS(int x, int y){
+        visit[y][x] = true;
+        for (int i = 0; i < 4; i++) {
+            nowX = x + dirX[i];
+            nowY = y + dirY[i];
+            if (RangeCheck() && map[nowY][nowX]==1 && visit[nowY][nowX] == false){
+                DFS(nowX, nowY);
             }
         }
+    }
+    static boolean RangeCheck(){
+        return (nowX < M && nowY < N && nowX >= 0 && nowY >= 0);
     }
 }
