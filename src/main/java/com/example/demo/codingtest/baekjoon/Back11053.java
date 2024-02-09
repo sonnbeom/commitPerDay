@@ -1,7 +1,7 @@
 package com.example.demo.codingtest.baekjoon;
 
 import java.util.*;
-public class Main{
+public class Back11053{
     static int[] seq;
     static Integer[] dp;
     public static void main(String[] args) {
