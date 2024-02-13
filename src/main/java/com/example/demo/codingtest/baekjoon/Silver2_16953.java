@@ -1,7 +1,7 @@
 package com.example.demo.codingtest.baekjoon;
 
 import java.util.*;
-public class Main {
+public class Silver2_16953 {
     static int count;
     static int impossible = -1;
     public static void main(String[]args){

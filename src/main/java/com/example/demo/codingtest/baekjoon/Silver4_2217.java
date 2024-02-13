@@ -1,7 +1,7 @@
 package com.example.demo.codingtest.baekjoon;
 
 import java.util.*;
-public class Main {
+public class Silver4_2217 {
     public static void main(String[]args){
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
