@@ -2,7 +2,7 @@ package com.example.demo.codingtest.test;
 
 
 import java.util.*;
-public class Main {
+public class Back_1012 {
     static boolean[][] visit;
     static int[] x = {0,0,-1,1};
     static int[] y = {-1,1,0,0};
