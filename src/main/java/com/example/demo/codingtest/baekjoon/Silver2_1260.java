@@ -1,54 +1,54 @@
 package com.example.demo.codingtest.baekjoon;
 
 import java.util.*;
-public class Silver2_1260 {
-    static int nodeCount;
-    static int edgeCount;
+public class Main {
+    static int node;
+    static int edge;
     static int start;
     static boolean[] visited;
-    static int[][]arr;
+    static int[][] arr;
+
     public static void main(String[]args){
         Scanner sc = new Scanner(System.in);
-        nodeCount = sc.nextInt();
-        edgeCount = sc.nextInt();
+        node = sc.nextInt();
+        edge = sc.nextInt();
         start = sc.nextInt();
-        arr = new int[nodeCount+1][nodeCount+1];
-        visited = new boolean[nodeCount+1];
-        for(int i = 0; i<edgeCount; i++){
+        arr = new int[node+1][node+1];
+        visited = new boolean[node+1];
+        for(int i = 0; i<edge; i++){
             int fi = sc.nextInt();
             int se = sc.nextInt();
             arr[fi][se] = arr[se][fi] = 1;
         }
         dfs(start);
         System.out.println();
-        visited = new boolean[nodeCount+1];
-        bfs(start);
-
+        visited = new boolean[node+1];
+        bfs();
     }
     static void dfs(int start){
         visited[start] = true;
         System.out.print(start+" ");
-        for(int i = 1; i<nodeCount; i++){
+        for(int i =1; i< node+1; i++){
             if(arr[start][i]==1 && visited[i]==false){
                 dfs(i);
             }
         }
     }
-    static void bfs(int start){
+    static void bfs(){
+        visited[start] = true;
         Queue<Integer> queue = new LinkedList<>();
         queue.add(start);
-        visited[start] = true;
         System.out.print(start+" ");
+        int tmp;
         while(!queue.isEmpty()){
-            int tmp = queue.poll();
-            for(int i = 1; i< nodeCount; i++){
+            tmp = queue.poll();
+            for(int i = 1; i<node+1; i++){
                 if(arr[tmp][i]==1 && visited[i]==false){
-                    visited[i] = true;
                     queue.add(i);
+                    visited[i] = true;
                     System.out.print(i+" ");
                 }
             }
         }
     }
-
 }
