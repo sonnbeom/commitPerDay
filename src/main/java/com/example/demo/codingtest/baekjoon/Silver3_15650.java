@@ -4,34 +4,35 @@ import java.util.*;
 public class Main {
     static int N;
     static int M;
-    static int arr[];
+    static int[] arr;
     static StringBuilder sb;
-
+    /*
+    * for문 돌아서 자신의 node 제거 visited true
+    *
+    * */
     public static void main(String[]args){
-        Scanner sc =new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
         M = sc.nextInt();
+
         arr = new int[M];
         sb = new StringBuilder();
-        dfs(0);
-
-        System.out.print(sb);
+        dfs(1,0);
+        System.out.println(sb);
     }
-    static void dfs(int depth){
-        if(M==depth){
+    static void dfs(int at, int depth){
+        if(depth == M){
             for(int i: arr){
-                sb.append(i+" ");
+            sb.append(i+ " ");
             }
             sb.append("\n");
             return;
         }
-        for(int i = 1; i<=N; i++){
-            arr[depth] = i;
-            dfs(depth+1);
+
+        for (int i = at; i<N; i++){
+            arr[depth] = i+1;
+            dfs(i+1, depth+1);
         }
+
     }
 }
-
-/*
-* dfs dfs 1
-* */
