@@ -2,51 +2,46 @@ package com.example.demo.codingtest.baekjoon;
 
 import java.util.*;
 public class Main {
-    static int node;
-    static int edge;
+    static int nodeCount;
+    static int edgeCount;
     static int start;
-    static boolean[] visited;
     static int[][] arr;
-
+    static boolean[] visited;
     public static void main(String[]args){
         Scanner sc = new Scanner(System.in);
-        node = sc.nextInt();
-        edge = sc.nextInt();
+        nodeCount = sc.nextInt();
+        edgeCount = sc.nextInt();
         start = sc.nextInt();
-        arr = new int[node+1][node+1];
-        visited = new boolean[node+1];
-        for(int i = 0; i<edge; i++){
+        arr = new int[nodeCount+1][nodeCount+1];
+        visited = new boolean[nodeCount+1];
+        for(int i = 0; i < edgeCount; i++){
             int fi = sc.nextInt();
             int se = sc.nextInt();
             arr[fi][se] = arr[se][fi] = 1;
         }
         dfs(start);
+        visited = new boolean[nodeCount+1];
         System.out.println();
-        visited = new boolean[node+1];
         bfs();
     }
-    static void dfs(int start){
-        visited[start] = true;
+    static void dfs(int at){
+        visited[at] = true;
         System.out.print(start+" ");
-        for(int i =1; i< node+1; i++){
-            if(arr[start][i]==1 && visited[i]==false){
+        for(int i =1; i <= nodeCount; i++){
+            if(visited[i]==false && arr[start][i]==1){
                 dfs(i);
             }
         }
     }
     static void bfs(){
-        visited[start] = true;
-        Queue<Integer> queue = new LinkedList<>();
+        Queue<Integer>queue = new LinkedList<>();
         queue.add(start);
-        System.out.print(start+" ");
-        int tmp;
         while(!queue.isEmpty()){
-            tmp = queue.poll();
-            for(int i = 1; i<node+1; i++){
-                if(arr[tmp][i]==1 && visited[i]==false){
+            int tmp = queue.poll();
+            for(int i = 1; i <= nodeCount; i++){
+                if(!visited[i] && arr[start][i] == 1){
                     queue.add(i);
                     visited[i] = true;
-                    System.out.print(i+" ");
                 }
             }
         }
