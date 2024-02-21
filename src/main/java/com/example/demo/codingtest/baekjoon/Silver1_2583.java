@@ -8,7 +8,6 @@ public class Main {
     static boolean[][] visited;
     static int[] ax = {0,0,-1,1};
     static int[] ay = {-1,1,0,0};
-
     public static void main(String[]args){
         Scanner sc = new Scanner(System.in);
         M = sc.nextInt();
@@ -16,8 +15,7 @@ public class Main {
         int k = sc.nextInt();
         map = new int[M][N];
         visited = new boolean[M][N];
-        ArrayList<Integer> list = new ArrayList<>();
-        for(int i =0; i < k; i++){
+        for(int i = 0; i < k; i++){
             int lx = sc.nextInt();
             int ly = sc.nextInt();
             int rx = sc.nextInt();
@@ -29,18 +27,19 @@ public class Main {
             }
         }
         int count = 0;
+        ArrayList<Integer> sizeList = new ArrayList<>();
         for(int i = 0; i < M; i++){
             for(int j = 0; j < N; j++){
-                if(map[i][j] ==0 && visited[i][j] == false){
-                    count ++;
+                if(!visited[i][j] && map[i][j] ==0){
+                    count++;
                     int width = bfs(i,j);
-                    list.add(width);
+                    sizeList.add(width);
                 }
             }
         }
-        Collections.sort(list);
+        Collections.sort(sizeList);
         System.out.println(count);
-        for(int v : list){
+        for(int v: sizeList){
             System.out.print(v+" ");
         }
     }
@@ -48,25 +47,24 @@ public class Main {
         Queue<int[]> queue = new LinkedList<>();
         queue.add(new int[] {x,y});
         visited[x][y] = true;
-        int width = 1;
+        int widthCount = 1;
         while(!queue.isEmpty()){
             int[] data = queue.poll();
-            x = data[0];
-            y = data[1];
+            int tx = data[0];
+            int ty = data[1];
             for(int i = 0; i < 4; i++){
-                int nowX = x + ax[i];
-                int nowY = y + ay[i];
-                if(rangeCheck(nowX,nowY) && visited[nowX][nowY] == false && map[nowX][nowY] ==0){
-                    visited[nowX][nowY] = true;
-                    width++;
-                    queue.add(new int[] {nowX,nowY});
+                int nowX = tx + ax[i];
+                int nowY = ty + ay[i];
+                if(nowX >= 0 && nowY >= 0 && nowX < M && nowY < N){
+                    if(map[nowX][nowY] == 0 && !visited[nowX][nowY]){
+                        visited[nowX][nowY] = true;
+                        widthCount++;
+                        queue.add(new int[] {nowX, nowY});
+                    }
                 }
             }
-
         }
-        return width;
+        return widthCount;
     }
-    static boolean rangeCheck(int x, int y){
-        return (x >= 0 && y >= 0 && x < M && y < N);
-    }
+
 }
