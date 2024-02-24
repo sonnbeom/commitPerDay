@@ -23,5 +23,6 @@ public class Main {
        for(int v : dp){
            max = Math.max(max, v);
        }
+       System.out.print(max);
     }
 }
