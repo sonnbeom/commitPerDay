@@ -38,13 +38,10 @@ public class Main {
             for(int i = 1; i <= node; i++){
                 if(map[tmp][i]==1 && dp[i] == -1){
                     dp[i] = dp[tmp] + 1;
-                    queue.add(i);
+                    queue.add(i);33
                 }
             }
 
         }
     }
 }
-dp[2] = dp[7] +1 dp[7]= 0
-dp[2] = 1 dp[1] = dp[2] +1
-dp[1] = 2 dp
