@@ -21,7 +21,7 @@ public class Silver5_1316 {
             char c = input.charAt(i);
             char a = '2';
             if(a == c){
-                continue;
+
             }else if(!map.containsKey(c)){
                 map.put(c,c);
                 a = c;
